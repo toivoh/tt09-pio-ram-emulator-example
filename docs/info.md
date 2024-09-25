@@ -17,14 +17,14 @@ At the same time, the logic computes a Julia fractal, writing 16 bits to the fra
 For more info about the RAM emulator, see https://github.com/toivoh/pio-ram-emulator/blob/main/docs/pio-ram-emulator.md.
 
 The project contains some helper code for working with with the RAM emulator:
-- `pio_ram_emulator.v` and `pio_ram_emulator.vh` (` sb_io.v` is also need) contain the modules `pio_ram_emu_transmitter` and `pio_ram_emu_receiver`
+- `pio_ram_emulator.v` and `pio_ram_emulator.vh` (`sb_io.v` is also need) contain the modules `pio_ram_emu_transmitter` and `pio_ram_emu_receiver`
 	- These are used to transmit and receive messages using the RAM emulator's message format
 	- The design still has to follow the rules in https://github.com/toivoh/pio-ram-emulator/blob/main/docs/pio-ram-emulator.md about which messages can be sent when
 	- See `julia_top.v` for an example of how to use these modules
 - `test/pio_ram_emulator_model.v` contains a simulation model of the RAM emulator
 	- See `test/tb.v` for an example of how to use the simulation model in a test
 	- See `verilator/vtop.v` for an example of how to use the simulation model in a verilator setup
-	- The model will try to detect behavior that violates the rules in https://github.com/toivoh/pio-ram-emulator/blob/main/docs/pio-ram-emulator.md, in which case it will set an error flag and stop responding (see `ERROR_RESPONSE parameter`)
+	- The model will try to detect behavior that violates the rules in https://github.com/toivoh/pio-ram-emulator/blob/main/docs/pio-ram-emulator.md, in which case it will set an error flag and stop responding (see the `ERROR_RESPONSE` parameter)
 	- The simulation model is helpful, but might not capture the ful behavior of the RAM emulator. Please try to run your design on an FPGA against the actual RAM emulator as well.
 
 ## How to test
