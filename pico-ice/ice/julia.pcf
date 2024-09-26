@@ -1,0 +1,56 @@
+set_io --warn-no-port led_green 39
+set_io --warn-no-port led_blue 40
+set_io --warn-no-port led_red 41
+
+set_io --warn-no-port clk 35
+# Set clock frequency -- should ideally be 50.4
+set_frequency clk 32
+
+
+# serial_out0-serial_out3: RP0-RP3
+set_io --warn-no-port TX_PIN0 27
+set_io --warn-no-port TX_PIN1 25
+#set_io --warn-no-port TX_PIN2 21
+#set_io --warn-no-port TX_PIN3 19
+
+# serial_in0-serial_in3: RP4-RP7
+set_io --warn-no-port RX_PIN0 26
+set_io --warn-no-port RX_PIN1 23
+#set_io --warn-no-port RX_PIN2 20
+#set_io --warn-no-port RX_PIN3 18
+
+# reset: RP14
+set_io --warn-no-port RESET_PIN 37 # RP14
+
+
+#	Pmod VGA 	Pico-ice
+#
+#	NC G3		28 31
+#	NC G2		32 34
+#	VS G1		36 38
+#	HS G0		42 43
+#
+#	B3 R3		44 45
+#	B2 R2		46 47
+#	B1 R1		48  2
+#	B0 R0		 3  4
+
+set_io --warn-no-port VGA_R0  4
+set_io --warn-no-port VGA_R1  2
+set_io --warn-no-port VGA_R2 47
+set_io --warn-no-port VGA_R3 45
+
+set_io --warn-no-port VGA_B0  3
+set_io --warn-no-port VGA_B1 48
+set_io --warn-no-port VGA_B2 46
+set_io --warn-no-port VGA_B3 44
+
+set_io --warn-no-port VGA_G0 43
+set_io --warn-no-port VGA_G1 38
+set_io --warn-no-port VGA_G2 34
+set_io --warn-no-port VGA_G3 31
+
+set_io --warn-no-port VGA_HS 42
+set_io --warn-no-port VGA_VS 36
+#set_io --warn-no-port VGA_NC1 32
+#set_io --warn-no-port VGA_NC2 28
