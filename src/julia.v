@@ -111,17 +111,22 @@ module julia #(parameter C_BITS = 12, ITER_BITS = 4, PIXEL_BITS = 4, LOG2_PIXELS
 		if (reset) iter_done_reg <= 1;
 		else if (phase == 2) iter_done_reg <= iter_done;
 
-		if (phase == 3) begin
-			if (restart_iter) begin
-				z_x <= z0_x;
-				z_y <= z0_y;
-				iter <= 0;
-				far_outside_reg <= 0;
-			end else begin
-				z_x <= z_x_next;
-				z_y <= z_y_next;
-				iter <= iter + 1;
-				far_outside_reg <= far_outside;
+		if (reset) begin
+			iter <= 0;
+			far_outside_reg <= 0;
+		end else begin
+			if (phase == 3) begin
+				if (restart_iter) begin
+					z_x <= z0_x;
+					z_y <= z0_y;
+					iter <= 0;
+					far_outside_reg <= 0;
+				end else begin
+					z_x <= z_x_next;
+					z_y <= z_y_next;
+					iter <= iter + 1;
+					far_outside_reg <= far_outside;
+				end
 			end
 		end
 	end
@@ -145,7 +150,7 @@ module julia #(parameter C_BITS = 12, ITER_BITS = 4, PIXEL_BITS = 4, LOG2_PIXELS
 	always @(posedge clk) begin
 		if (reset) begin
 			write_phase <= 0;
-			write_addr_available <= 1;
+			write_addr_available <= 0;
 			write_data_available <= 0;
 		end else begin
 			if (write_accepted) write_phase <= !write_phase;
