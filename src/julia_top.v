@@ -120,7 +120,25 @@ module julia_top #(parameter C_BITS = 12, ITER_BITS = 9) (
 	endgenerate
 
 	wire [PIXEL_BITS-1:0] curr_pixel = pixel_buffer[x[LOG2_CYCLES_PER_READ+1-1 -: LOG2_PIXELS_PER_WORD+1]];
+
+	// Simple color palette
+	// --------------------
+	wire [PIXEL_BITS:0] curr_pixel_p1 = curr_pixel + 1;
+	wire [PIXEL_BITS:0] curr_pixel_m1 = curr_pixel - 1;
+
+	//wire [PIXEL_BITS-1:0] curr_pixel_p1s = curr_pixel_p1[PIXEL_BITS] ? '1 : curr_pixel_p1[PIXEL_BITS-1:0];
+	wire [PIXEL_BITS-1:0] curr_pixel_p1s = curr_pixel_m1[PIXEL_BITS] ? '0 : (curr_pixel_p1[PIXEL_BITS] ? '1 : curr_pixel_p1[PIXEL_BITS-1:0]);
+	wire [PIXEL_BITS-1:0] curr_pixel_m1s = curr_pixel_m1[PIXEL_BITS] ? '0 : curr_pixel_m1[PIXEL_BITS-1:0];
+
+	wire [3:0] curr_pixel2 = {curr_pixel, curr_pixel};
+	wire [3:0] curr_pixel2_p1 = {curr_pixel_p1s, curr_pixel_p1s};
+	wire [3:0] curr_pixel2_m1 = {curr_pixel_m1s, curr_pixel_m1s};
+
+	assign rgb = active ? {curr_pixel2, curr_pixel2_m1, curr_pixel2_p1} : '0;
+
+	/*
 	wire [3:0] curr_pixel2 = {curr_pixel, curr_pixel};
 
 	assign rgb = active ? {curr_pixel2, curr_pixel2, curr_pixel2} : '0;
+	*/
 endmodule : julia_top
