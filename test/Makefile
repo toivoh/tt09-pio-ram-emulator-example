@@ -25,6 +25,8 @@ COMPILE_ARGS    += -DSIM
 COMPILE_ARGS    += -DUNIT_DELAY=\#1
 VERILOG_SOURCES += $(PDK_ROOT)/sky130A/libs.ref/sky130_fd_sc_hd/verilog/primitives.v
 VERILOG_SOURCES += $(PDK_ROOT)/sky130A/libs.ref/sky130_fd_sc_hd/verilog/sky130_fd_sc_hd.v
+
+# Add sb_io.v as a source even for GL sim, since it is needed by the RAM emulator model
 VERILOG_SOURCES += $(addprefix $(SRC_DIR)/,sb_io.v)
 
 # this gets copied in by the GDS action workflow
@@ -34,8 +36,9 @@ endif
 
 # Include the testbench sources:
 VERILOG_SOURCES += $(PWD)/tb.v
-VERILOG_SOURCES += $(PWD)/pio_ram_emulator_model.v
 TOPLEVEL = tb
+# Add RAM emulator model, used by the test bench
+VERILOG_SOURCES += $(PWD)/pio_ram_emulator_model.v
 
 # MODULE is the basename of the Python test file
 MODULE = test
