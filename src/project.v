@@ -49,7 +49,7 @@ module tt_um_toivoh_pio_ram_emu_example (
 	};
 
 	assign uio_out0[3:0] = 0;
-	assign uio_out0[5:4] = tx_pins;
+	assign uio_out0[5:4] = reset ? rx_pins : tx_pins; // Loopback from rx_pins to tx_pins during reset to allow RAM emulator to calibrate delay
 	assign uio_out0[7:6] = 0;
 	assign uio_oe[3:0] = 0;
 	assign uio_oe[5:4] = '1;
