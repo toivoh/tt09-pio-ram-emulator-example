@@ -65,7 +65,7 @@ module julia_top #(parameter C_BITS = 12, ITER_BITS = 9, DEBOUNCE_DELAY_BITS = 1
 	//wire [STEP_SIZE_BITS-1:0] step_size = C_BITS - 4;
 	reg [STEP_SIZE_BITS-1:0] step_size;
 
-	wire signed [C_BITS-1:0] delta_c_x = buttons_active[2] - buttons_active[3];
+	wire signed [C_BITS-1:0] delta_c_x = buttons_active[3] - buttons_active[2];
 	wire signed [C_BITS-1:0] delta_c_y = buttons_active[0] - buttons_active[1];
 	wire signed [STEP_SIZE_BITS-1:0] delta_step_size = (buttons_active[4] && step_size != MAX_STEP_SIZE) - (buttons_active[5] && step_size != '0);
 
