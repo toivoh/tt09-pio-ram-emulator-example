@@ -83,7 +83,8 @@ module top(
 	julia_top top(
 		.clk(clk), .reset(reset),
 		.rgb(rgb), .hsync(hsync), .vsync(vsync), .new_frame(new_frame),
-		.rx_pins(rx_pins), .tx_pins(tx_pins)
+		.rx_pins(rx_pins), .tx_pins(tx_pins),
+		.buttons('0), .use_both_button_dirs(1'b0)
 	);
 
 /*

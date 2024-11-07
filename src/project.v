@@ -5,7 +5,7 @@
 
 `default_nettype none
 
-module tt_um_toivoh_pio_ram_emu_example (
+module tt_um_toivoh_pio_ram_emu_example #(parameter DEBOUNCE_DELAY_BITS = 19) (
 	input  wire [7:0] ui_in,    // Dedicated inputs
 	output wire [7:0] uo_out,   // Dedicated outputs
 	input  wire [7:0] uio_in,   // IOs: Input path
@@ -23,10 +23,11 @@ module tt_um_toivoh_pio_ram_emu_example (
 	wire [11:0] rgb;
 	wire hsync, vsync, new_frame;
 	wire [IO_BITS-1:0] rx_pins, tx_pins;
-	julia_top top(
+	julia_top #(.DEBOUNCE_DELAY_BITS(DEBOUNCE_DELAY_BITS)) top(
 		.clk(clk), .reset(reset),
 		.rgb(rgb), .hsync(hsync), .vsync(vsync), .new_frame(new_frame),
-		.rx_pins(rx_pins), .tx_pins(tx_pins)
+		.rx_pins(rx_pins), .tx_pins(tx_pins),
+		.buttons(ui_in[5:0]), .use_both_button_dirs(ui_in[7])
 	);
 
 	wire [3:0] r, g, b;

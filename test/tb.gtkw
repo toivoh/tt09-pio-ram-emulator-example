@@ -1,0 +1,24 @@
+[*]
+[*] GTKWave Analyzer v3.4.0 (w)1999-2022 BSI
+[*] Thu Nov  7 05:39:41 2024
+[*]
+[dumpfile] "/home/toivo/code/tinytapeout/tt09-pio-ram-emulator-example/test/tb.vcd"
+[dumpfile_mtime] "Thu Nov  7 05:37:56 2024"
+[dumpfile_size] 1257545
+[savefile] "/home/toivo/code/tinytapeout/tt09-pio-ram-emulator-example/test/tb.gtkw"
+[timestart] 88700000
+[size] 1000 600
+[pos] -1 -1
+*-26.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] tb.
+[sst_width] 297
+[signals_width] 150
+[sst_expanded] 1
+[sst_vpaned_height] 158
+@28
+tb.rst_n
+tb.clk
+@421
+tb.running_counter
+[pattern_trace] 1
+[pattern_trace] 0

@@ -31,7 +31,12 @@ async def test_project(dut):
 	await ClockCycles(dut.clk, 10)
 	dut.rst_n.value = 1
 
-	await ClockCycles(dut.clk, (800*5+1)*2)
+	#await ClockCycles(dut.clk, (800*5+1)*2)
+	for i in range(800*5+1):
+		dut.ui_in.value = 0
+		await ClockCycles(dut.clk, 1)
+		dut.ui_in.value = 1
+		await ClockCycles(dut.clk, 1)
 
 
 	# Print RAM values that have been updated

@@ -28,12 +28,12 @@ echo
 
 echo "STA"
 echo "==="
-grep "timing__setup__ws\"" runs/wokwi/67-misc-reportmanufacturability/state_out.json
-grep "timing__hold__ws\"" runs/wokwi/67-misc-reportmanufacturability/state_out.json
+grep "timing__setup__ws\"" runs/wokwi/68-misc-reportmanufacturability/state_out.json
+grep "timing__hold__ws\"" runs/wokwi/68-misc-reportmanufacturability/state_out.json
 echo
-grep "design__max_slew_violation__count\"" runs/wokwi/67-misc-reportmanufacturability/state_out.json
-grep "design__max_fanout_violation__count\"" runs/wokwi/67-misc-reportmanufacturability/state_out.json
-grep "design__max_cap_violation__count\"" runs/wokwi/67-misc-reportmanufacturability/state_out.json
+grep "design__max_slew_violation__count\"" runs/wokwi/68-misc-reportmanufacturability/state_out.json
+grep "design__max_fanout_violation__count\"" runs/wokwi/68-misc-reportmanufacturability/state_out.json
+grep "design__max_cap_violation__count\"" runs/wokwi/68-misc-reportmanufacturability/state_out.json
 echo
 
 
@@ -42,10 +42,10 @@ echo "======="
 echo "# "
 echo
 grep Util runs/wokwi/*-openroad-globalplacement/openroad-globalplacement.log
-grep util runs/wokwi/67-misc-reportmanufacturability/state_out.json
+grep util runs/wokwi/68-misc-reportmanufacturability/state_out.json
 echo
-grep "timing__setup__ws\"" runs/wokwi/67-misc-reportmanufacturability/state_out.json
-grep "timing__hold__ws\"" runs/wokwi/67-misc-reportmanufacturability/state_out.json
+grep "timing__setup__ws\"" runs/wokwi/68-misc-reportmanufacturability/state_out.json
+grep "timing__hold__ws\"" runs/wokwi/68-misc-reportmanufacturability/state_out.json
 echo "Max slew violation: "
 echo
 #./tt/tt_tool.py --openlane2 --print-cell-summary

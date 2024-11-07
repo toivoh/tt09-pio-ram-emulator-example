@@ -8,6 +8,8 @@
 module julia #(parameter C_BITS = 12, ITER_BITS = 4, PIXEL_BITS = 4, LOG2_PIXELS_PER_WORD = 2, DEST_WIDTH = 160, DEST_HEIGHT = 480) (
 		input wire clk, reset,
 
+		input wire signed [C_BITS-1:0] c_x, c_y,
+
 		output wire write_en,
 		output wire write_mode_data, // 0 if sending write address, 1 if sending write data
 		output wire [15:0] w_addr,
@@ -55,8 +57,8 @@ module julia #(parameter C_BITS = 12, ITER_BITS = 4, PIXEL_BITS = 4, LOG2_PIXELS
 	wire signed [C_BITS-1:0] z0_y = sdy << (C_BITS - VY_BITS);
 
 
-	wire signed [C_BITS-1:0] c_x = -5734 >> (16 - C_BITS);
-	wire signed [C_BITS-1:0] c_y = 10158 >> (16 - C_BITS);
+//	wire signed [C_BITS-1:0] c_x = -5734 >> (16 - C_BITS);
+//	wire signed [C_BITS-1:0] c_y = 10158 >> (16 - C_BITS);
 
 	reg signed [C_BITS-1:0] z_x, z_y;
 	reg signed [C_BITS:0] z_x2, z_y2, z_xy;

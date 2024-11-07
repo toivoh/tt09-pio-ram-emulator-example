@@ -33,6 +33,8 @@ int main(int argc, char** argv) {
 
 	top = new Vvtop();
 
+	top->use_both_button_dirs = 1;
+
 	top->rst_n = 0;
 	timestep2();
 	top->rst_n = 1;
@@ -82,14 +84,32 @@ int main(int argc, char** argv) {
 
 	// Main loop
 	bool quit = false;
+	int buttons = 0;
 	while (!quit) {
 		// Handle events
 		SDL_Event event;
 		while (SDL_PollEvent(&event)) {
-			if (event.type == SDL_QUIT) {
-				quit = true;
+			if (event.type == SDL_QUIT) quit = true;
+			else if (event.type == SDL_KEYDOWN || event.type == SDL_KEYUP) {
+				int sym = event.key.keysym.sym;
+				int index = -1;
+				if (sym == SDLK_MINUS || sym == SDLK_KP_MINUS) index = 5;
+				else if (sym == SDLK_PLUS || sym == SDLK_KP_PLUS) index = 4;
+				else if (sym == SDLK_LEFT) index = 3;
+				else if (sym == SDLK_RIGHT) index = 2;
+				else if (sym == SDLK_DOWN) index = 1;
+				else if (sym == SDLK_UP) index = 0;
+
+				if (index >= 0) {
+					if (event.type == SDL_KEYDOWN) buttons |= (1 << index);
+					else buttons &= ~(1 << index);
+				}
+
+				//printf("index = %d, down = %d\n", index, event.type == SDL_KEYDOWN);
 			}
 		}
+
+		top->buttons = buttons;
 
 		// Get a framebuffer pointer
 		uint32_t* pixels;
